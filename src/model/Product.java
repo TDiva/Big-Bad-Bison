@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Created by TDiva on 2/11/16.
  */

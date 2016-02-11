@@ -1,3 +1,5 @@
+package model;
+
 /**
  * @author Vlad Abramov
  * @since 2/11/2016
