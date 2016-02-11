@@ -13,6 +13,20 @@ public class Order {
     private int xDeliverPos;
     private int yDeliverPos;
 
+    private boolean isDone;
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
+    public void setDone() {
+        isDone = true;
+    }
+
     private HashMap<Product, Integer> products = new HashMap<>();
 
     public Order() {

@@ -26,16 +26,20 @@ public class StupidSolver extends AbstractSolver {
         Result result = new Result();
         Queue<Drone> available = new LinkedList<>(drones);
         Queue<Warehouse> ws = new LinkedList<>(warehouses);
-        while (!available.isEmpty() && !orders.isEmpty()) {
+        int orderCnt = orders.size();
+        while (!available.isEmpty() && !ws.isEmpty() &&  orderCnt > 0) {
             Warehouse stPoint = ws.poll();
+            Drone drone = available.poll();
             for (Order o : orders) {
-                if (stPoint.hasAllItems(o.getProducts())) {
+                if (!o.isDone() && stPoint.hasAllItems(o.getProducts())) {
                     Map<Product, Integer> forDrone = new HashMap<>();
                     int weight = 0;
                     for (Product p : o.getProducts().keySet()) {
                         for (int i = 0; i < o.getProducts().get(p); i++) {
                             if (weight + p.getWeight() > maxWeight) {
-                                send(available.poll(), result, stPoint, o, forDrone);
+                                send(drone, result, stPoint, o, forDrone);
+                                available.add(drone);
+                                drone = available.poll();
                                 forDrone.clear();
                                 weight = 0;
                             }
@@ -43,8 +47,11 @@ public class StupidSolver extends AbstractSolver {
                             forDrone.put(p, (forDrone.containsKey(p) ? forDrone.get(p) : 0) + 1);
                         }
                     }
-                    send(available.poll(), result, stPoint, o, forDrone);
-                    orders.remove(o);
+                    send(drone, result, stPoint, o, forDrone);
+                    available.add(drone);
+                    drone = available.poll();
+                    o.setDone();
+                    orderCnt--;
                 }
             }
         }
