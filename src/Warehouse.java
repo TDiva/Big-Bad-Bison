@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Vlad Abramov
@@ -40,5 +41,9 @@ public class Warehouse {
 
     public void setProducts(HashMap<Integer, Integer> products) {
         this.products = products;
+    }
+
+    public boolean hasAllItems(Map<Integer, Integer> products) {
+
     }
 }
