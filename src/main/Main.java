@@ -64,10 +64,15 @@ public class Main {
         // warehouses
         st = new StringTokenizer(inOut.readLine());
         int warehouseCount = Integer.parseInt(st.nextToken());
-        st = new StringTokenizer(inOut.readLine());
         for (int i = 0; i < warehouseCount; ++i) {
+            st = new StringTokenizer(inOut.readLine());
             Warehouse w = new Warehouse(i, Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
-            w.
+            st = new StringTokenizer(inOut.readLine());
+            for (Product p : products) {
+                int c = Integer.parseInt(st.nextToken());
+                if (c != 0 )
+                    w.addProduct(p, c);
+            }
             warehouses.add(w);
         }
         Constructor<T> constructor = clazz.getDeclaredConstructor(List.class, List.class, List.class, List.class, Integer.class, Integer.class, Integer.class);

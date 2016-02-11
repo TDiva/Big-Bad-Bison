@@ -12,7 +12,7 @@ public class Warehouse {
     private int id;
     private int xPos;
     private int yPos;
-    private HashMap<Product, Integer> products; // key - product # ; value product count
+    private HashMap<Product, Integer> products = new HashMap<>(); // key - product # ; value product count
 
     public Warehouse() {
     }
