@@ -9,6 +9,7 @@ import java.util.Map;
  */
 public class Warehouse {
 
+    private int id;
     private int xPos;
     private int yPos;
     private HashMap<Product, Integer> products; // key - product # ; value product count
@@ -19,6 +20,14 @@ public class Warehouse {
     public Warehouse(int xPos, int yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getxPos() {
