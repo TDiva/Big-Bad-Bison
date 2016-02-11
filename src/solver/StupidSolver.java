@@ -1,6 +1,8 @@
-import model.AbstractSolver;
+package solver;
+
 import model.Drone;
 import model.Order;
+import model.Result;
 import model.Warehouse;
 
 import java.util.List;

@@ -1,3 +1,5 @@
+package main;
+
 import java.awt.Point;
 import java.io.*;
 import java.math.BigInteger;

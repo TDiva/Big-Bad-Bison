@@ -1,4 +1,8 @@
-package model;
+package solver;
+
+import model.Drone;
+import model.Order;
+import model.Warehouse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +20,7 @@ public abstract class AbstractSolver implements Solver {
     protected int c;
     protected int maxWeight;
 
-    public AbstractSolver(List<Drone> drones, List<Order> orders, List<Warehouse> warehouses, int r, int c, int m) {
+    public AbstractSolver(List<Drone> drones, List<Order> orders, List<Warehouse> warehouses, Integer r, Integer c, Integer m) {
         this.drones = drones;
         this.orders = orders;
         this.warehouses = warehouses;

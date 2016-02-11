@@ -1,3 +1,7 @@
+package model;
+
+import main.InOutService;
+
 /**
  * Created by TDiva on 2/11/16.
  */
