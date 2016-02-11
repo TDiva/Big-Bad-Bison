@@ -13,7 +13,7 @@ public class Order {
     private int xDeliverPos;
     private int yDeliverPos;
 
-    private HashMap<Product, Integer> products;
+    private HashMap<Product, Integer> products = new HashMap<>();
 
     public Order() {
     }
@@ -45,6 +45,14 @@ public class Order {
 
     public void setyDeliverPos(int yDeliverPos) {
         this.yDeliverPos = yDeliverPos;
+    }
+
+    public void addProduct(Product p) {
+        if (products.containsKey(p)) {
+            int count = products.get(p);
+            products.put(p, count + 1);
+        } else
+            products.put(p, 1);
     }
 
     public HashMap<Product, Integer> getProducts() {
