@@ -17,7 +17,8 @@ public class Warehouse {
     public Warehouse() {
     }
 
-    public Warehouse(int xPos, int yPos) {
+    public Warehouse(int id, int xPos, int yPos) {
+        this.id = id;
         this.xPos = xPos;
         this.yPos = yPos;
     }
@@ -54,6 +55,10 @@ public class Warehouse {
         this.products = products;
     }
 
+    public void addProduct(Product p, int count) {
+        products.put(p, count);
+    }
+
     public boolean hasAllItems(Map<Product, Integer> order) {
 
         boolean flag = true;
@@ -62,5 +67,15 @@ public class Warehouse {
                 flag = false;
         }
         return flag;
+    }
+
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "id=" + id +
+                ", xPos=" + xPos +
+                ", yPos=" + yPos +
+                ", products=" + products +
+                '}';
     }
 }

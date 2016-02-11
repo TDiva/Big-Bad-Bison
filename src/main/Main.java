@@ -18,10 +18,11 @@ public class Main {
     public static void main(String[] args) {
         try {
             String busyDay = "busy_day";
+            String test = "test";
             String motherOfAllWarehouses = "mother_of_all_warehouses";
             String redundancy = "redundancy";
 
-            InOutService inOut = new InOutService(busyDay);
+            InOutService inOut = new InOutService(test);
 
             AbstractSolver abstractSolver = parseInput(inOut, VladSolver.class);
 
@@ -50,10 +51,25 @@ public class Main {
         List<Order> orders = new ArrayList<>();
         List<Warehouse> warehouses = new ArrayList<>();
         List<Product> products = new ArrayList<>();
+        // drones
         for (int i = 0; i < dronesCount; ++i)
-            drones.add(new Drone(maxPayload));
+            drones.add(new Drone(i, maxPayload));
+        // products
+        st = new StringTokenizer(inOut.readLine());
+        int productCount = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(inOut.readLine());
+        for (int i = 0; i < productCount; ++i)
+            products.add(new Product(i, Integer.parseInt(st.nextToken())));
 
-        // List<model.Drone> drones, List<model.Order> orders, List<model.Warehouse> warehouses, int r, int c
+        // warehouses
+        st = new StringTokenizer(inOut.readLine());
+        int warehouseCount = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(inOut.readLine());
+        for (int i = 0; i < warehouseCount; ++i) {
+            Warehouse w = new Warehouse(i, Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            w.
+            warehouses.add(w);
+        }
         Constructor<T> constructor = clazz.getDeclaredConstructor(List.class, List.class, List.class, List.class, Integer.class, Integer.class, Integer.class);
         return constructor.newInstance(drones, products, orders, warehouses, rows, columns, maxPayload);
     }
