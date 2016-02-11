@@ -2,7 +2,6 @@ package main;
 
 import model.*;
 import solver.AbstractSolver;
-import model.Result;
 import solver.Solver;
 import solver.VladSolver;
 
@@ -10,6 +9,8 @@ import java.lang.reflect.Constructor;
 import java.util.*;
 
 public class Main {
+
+    public static int TURNS = 0;
 
     // Fill solvers
     private static List<Solver> solvers = Arrays.asList();
@@ -43,14 +44,18 @@ public class Main {
         int rows = Integer.parseInt(st.nextToken());
         int columns = Integer.parseInt(st.nextToken());
         int dronesCount = Integer.parseInt(st.nextToken());
+        TURNS = Integer.parseInt(st.nextToken());
+        int maxPayload = Integer.parseInt(st.nextToken());
         List<Drone> drones = new ArrayList<>();
         List<Order> orders = new ArrayList<>();
         List<Warehouse> warehouses = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
         for (int i = 0; i < dronesCount; ++i)
-            drones.add(new Drone());
+            drones.add(new Drone(maxPayload));
+
         // List<model.Drone> drones, List<model.Order> orders, List<model.Warehouse> warehouses, int r, int c
-        Constructor<T> constructor = clazz.getDeclaredConstructor(List.class, List.class, List.class, Integer.class, Integer.class);
-        return constructor.newInstance(drones, orders, warehouses, rows, columns);
+        Constructor<T> constructor = clazz.getDeclaredConstructor(List.class, List.class, List.class, List.class, Integer.class, Integer.class, Integer.class);
+        return constructor.newInstance(drones, products, orders, warehouses, rows, columns, maxPayload);
     }
 
 }
