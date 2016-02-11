@@ -51,16 +51,25 @@ public class Main {
         List<Order> orders = new ArrayList<>();
         List<Warehouse> warehouses = new ArrayList<>();
         List<Product> products = new ArrayList<>();
-
+        // drones
         for (int i = 0; i < dronesCount; ++i)
             drones.add(new Drone(i, maxPayload));
-
+        // products
         st = new StringTokenizer(inOut.readLine());
         int productCount = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(inOut.readLine());
         for (int i = 0; i < productCount; ++i)
             products.add(new Product(i, Integer.parseInt(st.nextToken())));
 
+        // warehouses
+        st = new StringTokenizer(inOut.readLine());
+        int warehouseCount = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(inOut.readLine());
+        for (int i = 0; i < warehouseCount; ++i) {
+            Warehouse w = new Warehouse(i, Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            w.
+            warehouses.add(w);
+        }
         Constructor<T> constructor = clazz.getDeclaredConstructor(List.class, List.class, List.class, List.class, Integer.class, Integer.class, Integer.class);
         return constructor.newInstance(drones, products, orders, warehouses, rows, columns, maxPayload);
     }

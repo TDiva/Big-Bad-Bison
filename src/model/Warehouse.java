@@ -55,7 +55,7 @@ public class Warehouse {
         this.products = products;
     }
 
-    private void addProduct(Product p, int count) {
+    public void addProduct(Product p, int count) {
         products.put(p, count);
     }
 
