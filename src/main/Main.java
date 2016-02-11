@@ -81,8 +81,33 @@ public class Main {
             }
             warehouses.add(w);
         }
+
+        // orders
+        st = new StringTokenizer(inOut.readLine());
+        int ordersCount = Integer.parseInt(st.nextToken());
+        for (int i = 0; i < ordersCount; ++i) {
+            st = new StringTokenizer(inOut.readLine());
+            Order o = new Order(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            st = new StringTokenizer(inOut.readLine());
+            int itemsCount = Integer.parseInt(st.nextToken());
+            st = new StringTokenizer(inOut.readLine());
+            for (int j = 0; j < itemsCount; ++j) {
+                int id = Integer.parseInt(st.nextToken());
+                Product p = getProduct(products, id);
+                o.addProduct(p);
+            }
+            orders.add(o);
+        }
+
         Constructor<T> constructor = clazz.getDeclaredConstructor(List.class, List.class, List.class, List.class, Integer.class, Integer.class, Integer.class);
         return constructor.newInstance(drones, products, orders, warehouses, rows, columns, maxPayload);
+    }
+
+    private static Product getProduct(List<Product> products, int id) {
+        for (Product p : products)
+            if (p.getTypeCode() == id)
+                return p;
+        return null;
     }
 
 }
