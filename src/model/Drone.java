@@ -6,6 +6,7 @@ package model;
  */
 public class Drone {
 
+    private int id;
     private int maxPayload;
     private int curLoad;
 
@@ -19,6 +20,14 @@ public class Drone {
     public Drone(int maxPayload, int curLoad) {
         this.maxPayload = maxPayload;
         this.curLoad = curLoad;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getMaxPayload() {
