@@ -12,12 +12,13 @@ import java.util.List;
  */
 public class ShortPathSolver extends AbstractSolver {
 
-    public ShortPathSolver(int r, int c) {
-        super(r, c);
+
+    public ShortPathSolver(List<Drone> drones, List<Order> orders, List<Warehouse> warehouses, Integer r, Integer c, Integer m) {
+        super(drones, orders, warehouses, r, c, m);
     }
 
-    public ShortPathSolver(List<Drone> drones, List<Order> orders, List<Warehouse> warehouses, int r, int c) {
-        super(drones, orders, warehouses, r, c);
+    public ShortPathSolver(int r, int c, int m) {
+        super(r, c, m);
     }
 
     @Override

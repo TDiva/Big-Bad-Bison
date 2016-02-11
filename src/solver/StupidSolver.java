@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class StupidSolver extends AbstractSolver {
 
-    public StupidSolver(List<Drone> drones, List<Order> orders, List<Warehouse> warehouses, int r, int c, int m) {
+    public StupidSolver(List<Drone> drones, List<Order> orders, List<Warehouse> warehouses, Integer r, Integer c, Integer m) {
         super(drones, orders, warehouses, r, c, m);
     }
 
