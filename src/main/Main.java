@@ -7,7 +7,10 @@ import solver.StupidSolver;
 import solver.VladSolver;
 
 import java.lang.reflect.Constructor;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class Main {
 
@@ -19,11 +22,10 @@ public class Main {
     public static void main(String[] args) {
         try {
             String busyDay = "busy_day";
-            String test = "test";
             String motherOfAllWarehouses = "mother_of_all_warehouses";
             String redundancy = "redundancy";
 
-            InOutService inOut = new InOutService(test);
+            InOutService inOut = new InOutService(busyDay);
 
             AbstractSolver abstractSolver = parseInput(inOut, VladSolver.class);
 
