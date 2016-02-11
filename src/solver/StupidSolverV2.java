@@ -46,7 +46,13 @@ public class StupidSolverV2 extends AbstractSolver {
                     int weight = 0;
                     Map<Product, Integer> list1 = first.getListofAvailable(o.getProducts());
                     Map<Product, Integer> list2 = restOf(o.getProducts(), list1);
-                    for (Product p : list1.keySet()) {
+
+                    List<Product> keys1 = new ArrayList<>(list1.keySet());
+                    Collections.sort(keys1, (o1, o2) -> o1.getWeight() - o2.getWeight());
+
+                    List<Product> keys2 = new ArrayList<>(list2.keySet());
+                    Collections.sort(keys2, (o1, o2) -> o1.getWeight() - o2.getWeight());
+                    for (Product p : keys1) {
                         for (int i = 0; i < list1.get(p); i++) {
                             if (weight + p.getWeight() > maxWeight) {
                                 send(drone, result, first, o, forDrone);
@@ -67,7 +73,7 @@ public class StupidSolverV2 extends AbstractSolver {
 
                     forDrone.clear();
                     weight = 0;
-                    for (Product p : list2.keySet()) {
+                    for (Product p : keys2) {
                         for (int i = 0; i < list2.get(p); i++) {
                             if (weight + p.getWeight() > maxWeight) {
                                 send(drone, result, stPoint, o, forDrone);
