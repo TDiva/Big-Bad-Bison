@@ -6,12 +6,12 @@ import java.util.List;
  */
 public abstract class AbstractSolver implements Solver {
 
-    private List<Drone> drones;
-    private List<Order> orders;
-    private List<Warehouse> warehouses;
+    protected List<Drone> drones;
+    protected List<Order> orders;
+    protected List<Warehouse> warehouses;
 
-    private int r;
-    private int c;
+    protected int r;
+    protected int c;
 
     public AbstractSolver(List<Drone> drones, List<Order> orders, List<Warehouse> warehouses, int r, int c) {
         this.drones = drones;
