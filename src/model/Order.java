@@ -9,6 +9,8 @@ import java.util.List;
  */
 public class Order {
 
+    private int id;
+
     private int xDeliverPos;
     private int yDeliverPos;
 
@@ -20,6 +22,14 @@ public class Order {
     public Order(int xDeliverPos, int yDeliverPos) {
         this.xDeliverPos = xDeliverPos;
         this.yDeliverPos = yDeliverPos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getxDeliverPos() {
