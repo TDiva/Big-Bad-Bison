@@ -69,6 +69,15 @@ public class Warehouse {
         return flag;
     }
 
+    public void ejectProducts(Map<Product, Integer> eject) {
+        for (Product p: eject.keySet()) {
+            if (products.get(p) == eject.get(p))
+                products.remove(p);
+            else
+                products.put(p, products.get(p) - eject.get(p));
+        }
+    }
+
     @Override
     public String toString() {
         return "Warehouse{" +

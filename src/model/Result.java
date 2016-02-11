@@ -61,6 +61,7 @@ public class Result implements Comparable<Result>{
     }
 
     public void save(InOutService inOutService) {
+        inOutService.saveLine(operationList.size());
         for (Operation o: operationList) {
             inOutService.saveLine(o.toString());
         }

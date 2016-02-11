@@ -38,6 +38,7 @@ public class StupidSolver extends AbstractSolver {
                         for (int i = 0; i < o.getProducts().get(p); i++) {
                             if (weight + p.getWeight() > maxWeight) {
                                 send(drone, result, stPoint, o, forDrone);
+                                stPoint.ejectProducts(forDrone);
                                 available.add(drone);
                                 drone = available.poll();
                                 forDrone.clear();
@@ -48,6 +49,7 @@ public class StupidSolver extends AbstractSolver {
                         }
                     }
                     send(drone, result, stPoint, o, forDrone);
+                    stPoint.ejectProducts(forDrone);
                     available.add(drone);
                     drone = available.poll();
                     o.setDone();
