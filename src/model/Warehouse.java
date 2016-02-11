@@ -14,6 +14,11 @@ public class Warehouse {
     private int yPos;
     private HashMap<Product, Integer> products = new HashMap<>(); // key - product # ; value product count
 
+    public int wayTo(int x, int y) {
+        return (int) Math.floor(Math.sqrt(Math.pow(xPos - x, 2) + Math.pow(yPos - y, 2)) - 0.00001) + 1;
+    }
+
+
     public Warehouse() {
     }
 

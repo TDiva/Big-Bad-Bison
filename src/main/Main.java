@@ -1,10 +1,7 @@
 package main;
 
 import model.*;
-import solver.AbstractSolver;
-import solver.Solver;
-import solver.StubSolver;
-import solver.StupidSolver;
+import solver.*;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -29,7 +26,7 @@ public class Main {
 
             AbstractSolver abstractSolver = parseInput(inOut, StubSolver.class);
 
-            StupidSolver tanya = new StupidSolver(abstractSolver);
+            StupidSolverV2 tanya = new StupidSolverV2(abstractSolver);
 
             Result r = tanya.run();
             r.save(inOut);
