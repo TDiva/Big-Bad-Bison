@@ -84,6 +84,22 @@ public class Warehouse {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Warehouse)) return false;
+
+        Warehouse warehouse = (Warehouse) o;
+
+        return id == warehouse.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
     public String toString() {
         return "Warehouse{" +
                 "id=" + id +
