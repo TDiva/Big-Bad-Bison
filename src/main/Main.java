@@ -25,7 +25,7 @@ public class Main {
             String motherOfAllWarehouses = "mother_of_all_warehouses";
             String redundancy = "redundancy";
 
-            InOutService inOut = new InOutService(busyDay);
+            InOutService inOut = new InOutService(motherOfAllWarehouses);
 
             AbstractSolver abstractSolver = parseInput(inOut, StubSolver.class);
 
@@ -89,7 +89,7 @@ public class Main {
         int ordersCount = Integer.parseInt(st.nextToken());
         for (int i = 0; i < ordersCount; ++i) {
             st = new StringTokenizer(inOut.readLine());
-            Order o = new Order(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            Order o = new Order(i, Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
             st = new StringTokenizer(inOut.readLine());
             int itemsCount = Integer.parseInt(st.nextToken());
             st = new StringTokenizer(inOut.readLine());

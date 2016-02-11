@@ -32,7 +32,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(int xDeliverPos, int yDeliverPos) {
+    public Order(int id, int xDeliverPos, int yDeliverPos) {
+        this.id = id;
         this.xDeliverPos = xDeliverPos;
         this.yDeliverPos = yDeliverPos;
     }
