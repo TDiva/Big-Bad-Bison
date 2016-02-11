@@ -1,7 +1,6 @@
 package model;
 
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author Vlad Abramov
@@ -44,5 +43,14 @@ public class Order {
 
     public void setProducts(HashMap<Product, Integer> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "xDeliverPos=" + xDeliverPos +
+                ", yDeliverPos=" + yDeliverPos +
+                ", products=" + products +
+                '}';
     }
 }

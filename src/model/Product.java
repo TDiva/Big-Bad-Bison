@@ -30,4 +30,12 @@ public class Product {
     public void setWeight(int weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "typeCode=" + typeCode +
+                ", weight=" + weight +
+                '}';
+    }
 }

@@ -41,4 +41,13 @@ public class Drone {
     public void setCurLoad(int curLoad) {
         this.curLoad = curLoad;
     }
+
+    @Override
+    public String toString() {
+        return "Drone{" +
+                "id=" + id +
+                ", maxPayload=" + maxPayload +
+                ", curLoad=" + curLoad +
+                '}';
+    }
 }

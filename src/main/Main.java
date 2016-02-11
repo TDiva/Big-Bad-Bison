@@ -53,7 +53,7 @@ public class Main {
         List<Product> products = new ArrayList<>();
 
         for (int i = 0; i < dronesCount; ++i)
-            drones.add(new Drone(maxPayload));
+            drones.add(new Drone(i, maxPayload));
 
         st = new StringTokenizer(inOut.readLine());
         int productCount = Integer.parseInt(st.nextToken());
