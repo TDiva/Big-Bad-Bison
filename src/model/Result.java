@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toCollection;
 
 /**
  * Created by TDiva on 2/11/16.
@@ -59,7 +60,9 @@ public class Result implements Comparable<Result>{
     }
 
     public void save(InOutService inOutService) {
-
+        for (Operation o: operationList) {
+            inOutService.saveLine(o.toString());
+        }
     }
 
     // MAX is the best
