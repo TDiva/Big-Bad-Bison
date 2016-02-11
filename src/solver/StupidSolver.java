@@ -23,27 +23,29 @@ public class StupidSolver extends AbstractSolver {
 
     @Override
     public Result run() {
-
-        Warehouse stPoint = warehouses.get(0);
-
         Result result = new Result();
         Queue<Drone> available = new LinkedList<>(drones);
-        for (Order o: orders) {
-            if (stPoint.hasAllItems(o.getProducts())) {
-                Map<Product, Integer> forDrone = new HashMap<>();
-                int weight = 0;
-                for (Product p : o.getProducts().keySet()) {
-                    for (int i = 0; i < o.getProducts().get(p); i++) {
-                        if (weight + p.getWeight() > maxWeight) {
-                            send(available.poll(), result, stPoint, o, forDrone);
-                            forDrone.clear();
-                            weight = 0;
+        Queue<Warehouse> ws = new LinkedList<>(warehouses);
+        while (!available.isEmpty() && !orders.isEmpty()) {
+            Warehouse stPoint = ws.poll();
+            for (Order o : orders) {
+                if (stPoint.hasAllItems(o.getProducts())) {
+                    Map<Product, Integer> forDrone = new HashMap<>();
+                    int weight = 0;
+                    for (Product p : o.getProducts().keySet()) {
+                        for (int i = 0; i < o.getProducts().get(p); i++) {
+                            if (weight + p.getWeight() > maxWeight) {
+                                send(available.poll(), result, stPoint, o, forDrone);
+                                forDrone.clear();
+                                weight = 0;
+                            }
+                            weight += p.getWeight();
+                            forDrone.put(p, (forDrone.containsKey(p) ? forDrone.get(p) : 0) + 1);
                         }
-                        weight += p.getWeight();
-                        forDrone.put(p, (forDrone.containsKey(p) ? forDrone.get(p) : 0) + 1);
                     }
+                    send(available.poll(), result, stPoint, o, forDrone);
+                    orders.remove(o);
                 }
-                send(available.poll(), result, stPoint, o, forDrone);
             }
         }
 
