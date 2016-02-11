@@ -27,6 +27,10 @@ public class Order {
         isDone = true;
     }
 
+    public int wayTo(int x, int y) {
+        return (int) Math.floor(Math.sqrt(Math.pow(xDeliverPos - x, 2) + Math.pow(yDeliverPos - y, 2)) - 0.00001) + 1;
+    }
+
     private HashMap<Product, Integer> products = new HashMap<>();
 
     public Order() {

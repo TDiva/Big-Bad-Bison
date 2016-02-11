@@ -26,17 +26,18 @@ public class StupidSolverV2 extends AbstractSolver {
         Result result = new Result();
         Queue<Drone> available = new LinkedList<>(drones);
         Warehouse first = warehouses.get(0);
-        Collections.sort(warehouses, new Comparator<Warehouse>() {
-            @Override
-            public int compare(Warehouse o1, Warehouse o2) {
-                return o1.wayTo(first.getxPos(), first.getyPos()) - o2.wayTo(first.getxPos(), first.getyPos());
-            }
-        });
+        Collections.sort(warehouses, (o1, o2) -> o1.wayTo(first.getxPos(), first.getyPos()) - o2.wayTo(first.getxPos(), first.getyPos()));
         Queue<Warehouse> ws = new LinkedList<>(warehouses);
         int orderCnt = orders.size();
         while (!available.isEmpty() && !ws.isEmpty() &&  orderCnt > 0) {
             Warehouse stPoint = ws.poll();
             Drone drone = available.poll();
+            Collections.sort(orders, (o1, o2) -> {
+                if (o1.isDone() && o2.isDone()) return 0;
+                if (o1.isDone()) return Integer.MAX_VALUE;
+                if (o2.isDone()) return Integer.MIN_VALUE;
+                else return o1.wayTo(stPoint.getxPos(), stPoint.getyPos()) - o2.wayTo(stPoint.getxPos(), stPoint.getyPos());
+            });
             for (Order o : orders) {
                 if (!o.isDone() && stPoint.hasAllItems(o.getProducts())) {
                     Map<Product, Integer> forDrone = new HashMap<>();
