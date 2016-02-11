@@ -60,6 +60,11 @@ public class Result implements Comparable<Result>{
         operationList.add(new Operation(drone, OperaionType.DELIVER, order.getId(), product.getTypeCode(), amount));
     }
 
+    public void unload(Drone drone, Warehouse warehouse, Product product, Integer amount) {
+        operationList.add(new Operation(drone, OperaionType.UNLOAD, warehouse.getId(), product.getTypeCode(), amount));
+    }
+
+
     public void save(InOutService inOutService) {
         inOutService.saveLine(operationList.size());
         for (Operation o: operationList) {

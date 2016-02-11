@@ -39,11 +39,36 @@ public class StupidSolverV2 extends AbstractSolver {
                 else return o1.wayTo(stPoint.getxPos(), stPoint.getyPos()) - o2.wayTo(stPoint.getxPos(), stPoint.getyPos());
             });
             for (Order o : orders) {
-                if (!o.isDone() && stPoint.hasAllItems(o.getProducts())) {
+                if (!o.isDone() &&
+                        ((first == stPoint && first.hasAllItems(o.getProducts())) ||
+                                (first != stPoint  && Warehouse.hasAllItems2(o.getProducts(), stPoint, first)))) {
                     Map<Product, Integer> forDrone = new HashMap<>();
                     int weight = 0;
-                    for (Product p : o.getProducts().keySet()) {
-                        for (int i = 0; i < o.getProducts().get(p); i++) {
+                    Map<Product, Integer> list1 = first.getListofAvailable(o.getProducts());
+                    Map<Product, Integer> list2 = restOf(o.getProducts(), list1);
+                    for (Product p : list1.keySet()) {
+                        for (int i = 0; i < list1.get(p); i++) {
+                            if (weight + p.getWeight() > maxWeight) {
+                                send(drone, result, first, o, forDrone);
+                                first.ejectProducts(forDrone);
+                                available.add(drone);
+                                drone = available.poll();
+                                forDrone.clear();
+                                weight = 0;
+                            }
+                            weight += p.getWeight();
+                            forDrone.put(p, (forDrone.containsKey(p) ? forDrone.get(p) : 0) + 1);
+                        }
+                    }
+                    send(drone, result, first, o, forDrone);
+                    first.ejectProducts(forDrone);
+                    available.add(drone);
+                    drone = available.poll();
+
+                    forDrone.clear();
+                    weight = 0;
+                    for (Product p : list2.keySet()) {
+                        for (int i = 0; i < list2.get(p); i++) {
                             if (weight + p.getWeight() > maxWeight) {
                                 send(drone, result, stPoint, o, forDrone);
                                 stPoint.ejectProducts(forDrone);
@@ -60,6 +85,7 @@ public class StupidSolverV2 extends AbstractSolver {
                     stPoint.ejectProducts(forDrone);
                     available.add(drone);
                     drone = available.poll();
+
                     o.setDone();
                     orderCnt--;
                 }
@@ -69,10 +95,30 @@ public class StupidSolverV2 extends AbstractSolver {
         return result;
     }
 
+    public static Map<Product, Integer> restOf(Map<Product, Integer> all, Map<Product, Integer> done) {
+        Map<Product, Integer> rest = new HashMap<>(all);
+        for (Product p: done.keySet()) {
+            rest.put(p, rest.get(p) - done.get(p));
+        }
+        return rest;
+    }
+
     public void send(Drone d, Result r, Warehouse w, Order o, Map<Product, Integer> pr) {
         for (Product p: pr.keySet()) {
             r.load(d, w, p, pr.get(p));
         }
+        for (Product p : pr.keySet()) {
+            r.deliver(d, o, p, pr.get(p));
+        }
+    }
+
+    public void load(Drone d, Result r, Warehouse w, Order o, Map<Product, Integer> pr) {
+        for (Product p: pr.keySet()) {
+            r.load(d, w, p, pr.get(p));
+        }
+    }
+
+    public void deliver(Drone d, Result r, Warehouse w, Order o, Map<Product, Integer> pr) {
         for (Product p : pr.keySet()) {
             r.deliver(d, o, p, pr.get(p));
         }

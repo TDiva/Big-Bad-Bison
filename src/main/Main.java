@@ -22,7 +22,7 @@ public class Main {
             String motherOfAllWarehouses = "mother_of_all_warehouses";
             String redundancy = "redundancy";
 
-            InOutService inOut = new InOutService(redundancy);
+            InOutService inOut = new InOutService(motherOfAllWarehouses);
 
             AbstractSolver abstractSolver = parseInput(inOut, StubSolver.class);
 
