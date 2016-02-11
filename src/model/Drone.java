@@ -13,13 +13,9 @@ public class Drone {
     public Drone() {
     }
 
-    public Drone(int maxPayload) {
+    public Drone(int id, int maxPayload) {
         this.maxPayload = maxPayload;
-    }
-
-    public Drone(int maxPayload, int curLoad) {
-        this.maxPayload = maxPayload;
-        this.curLoad = curLoad;
+        this.id = id;
     }
 
     public int getId() {
