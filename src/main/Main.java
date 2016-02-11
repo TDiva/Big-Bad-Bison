@@ -25,7 +25,7 @@ public class Main {
             String motherOfAllWarehouses = "mother_of_all_warehouses";
             String redundancy = "redundancy";
 
-            InOutService inOut = new InOutService(motherOfAllWarehouses);
+            InOutService inOut = new InOutService(redundancy);
 
             AbstractSolver abstractSolver = parseInput(inOut, StubSolver.class);
 
