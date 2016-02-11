@@ -3,8 +3,8 @@ package main;
 import model.*;
 import solver.AbstractSolver;
 import solver.Solver;
+import solver.StubSolver;
 import solver.StupidSolver;
-import solver.VladSolver;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class Main {
 
             InOutService inOut = new InOutService(busyDay);
 
-            AbstractSolver abstractSolver = parseInput(inOut, VladSolver.class);
+            AbstractSolver abstractSolver = parseInput(inOut, StubSolver.class);
 
             StupidSolver tanya = new StupidSolver(abstractSolver);
 
