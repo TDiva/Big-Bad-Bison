@@ -9,6 +9,9 @@ import java.util.*;
  */
 public class StupidSolver extends AbstractSolver {
 
+    public StupidSolver(AbstractSolver a) {
+        super(a.drones, a.products, a.orders, a.warehouses, a.r, a.c, a.maxWeight);
+    }
 
     public StupidSolver(List<Drone> drones, List<Product> products, List<Order> orders, List<Warehouse> warehouses, Integer r, Integer c, Integer m) {
         super(drones, products, orders, warehouses, r, c, m);

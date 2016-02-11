@@ -3,6 +3,7 @@ package main;
 import model.*;
 import solver.AbstractSolver;
 import solver.Solver;
+import solver.StupidSolver;
 import solver.VladSolver;
 
 import java.lang.reflect.Constructor;
@@ -26,12 +27,17 @@ public class Main {
 
             AbstractSolver abstractSolver = parseInput(inOut, VladSolver.class);
 
-            List<Result> res = new ArrayList<>();
-            solvers.forEach( s -> res.add(s.run()));
+            StupidSolver tanya = new StupidSolver(abstractSolver);
 
-            Result best = Collections.max(res);
-            if (best != null)
-                best.save(inOut);
+            Result r = tanya.run();
+            r.save(inOut);
+
+//            List<Result> res = new ArrayList<>();
+//            solvers.forEach( s -> res.add(s.run()));
+//
+//            Result best = Collections.max(res);
+//            if (best != null)
+//                best.save(inOut);
 
             inOut.close();
         } catch (Exception e) {

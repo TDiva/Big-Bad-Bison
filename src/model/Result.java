@@ -2,6 +2,7 @@ package model;
 
 import main.InOutService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class Result implements Comparable<Result>{
         }
     }
 
-    private List<Operation> operationList;
+    private List<Operation> operationList = new ArrayList<>();
 
     public void load(Drone drone, Warehouse warehouse, Product product, Integer amount) {
         operationList.add(new Operation(drone, OperaionType.LOAD, warehouse.getId(), product.getTypeCode(), amount));
