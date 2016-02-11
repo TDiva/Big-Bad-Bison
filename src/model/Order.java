@@ -12,7 +12,7 @@ public class Order {
     private int xDeliverPos;
     private int yDeliverPos;
 
-    private HashMap<Integer, Integer> products;
+    private HashMap<Product, Integer> products;
 
     public Order() {
     }
@@ -38,11 +38,11 @@ public class Order {
         this.yDeliverPos = yDeliverPos;
     }
 
-    public HashMap<Integer, Integer> getProducts() {
+    public HashMap<Product, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(HashMap<Integer, Integer> products) {
+    public void setProducts(HashMap<Product, Integer> products) {
         this.products = products;
     }
 }

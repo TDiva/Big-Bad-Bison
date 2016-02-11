@@ -11,7 +11,7 @@ public class Warehouse {
 
     private int xPos;
     private int yPos;
-    private HashMap<Integer, Integer> products; // key - product # ; value product count
+    private HashMap<Product, Integer> products; // key - product # ; value product count
 
     public Warehouse() {
     }
@@ -37,15 +37,21 @@ public class Warehouse {
         this.yPos = yPos;
     }
 
-    public HashMap<Integer, Integer> getProducts() {
+    public HashMap<Product, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(HashMap<Integer, Integer> products) {
+    public void setProducts(HashMap<Product, Integer> products) {
         this.products = products;
     }
 
-    public boolean hasAllItems(Map<Integer, Integer> products) {
+    public boolean hasAllItems(Map<Product, Integer> order) {
 
+        boolean flag = true;
+        for (Product k: order.keySet()) {
+            if (!products.containsKey(k) || products.get(k) < order.get(k))
+                flag = false;
+        }
+        return flag;
     }
 }
