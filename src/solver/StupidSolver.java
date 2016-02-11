@@ -2,7 +2,7 @@ package solver;
 
 import model.*;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by TDiva on 2/11/16.
@@ -23,13 +23,36 @@ public class StupidSolver extends AbstractSolver {
 
         Warehouse stPoint = warehouses.get(0);
 
+        Result result = new Result();
+        Queue<Drone> available = new LinkedList<>(drones);
         for (Order o: orders) {
             if (stPoint.hasAllItems(o.getProducts())) {
-                
+                Map<Product, Integer> forDrone = new HashMap<>();
+                int weight = 0;
+                for (Product p : o.getProducts().keySet()) {
+                    for (int i = 0; i < o.getProducts().get(p); i++) {
+                        if (weight + p.getWeight() > maxWeight) {
+                            send(available.poll(), result, stPoint, o, forDrone);
+                            forDrone.clear();
+                            weight = 0;
+                        }
+                        weight += p.getWeight();
+                        forDrone.put(p, (forDrone.containsKey(p) ? forDrone.get(p) : 0) + 1);
+                    }
+                }
+                send(available.poll(), result, stPoint, o, forDrone);
             }
         }
 
+        return result;
+    }
 
-        return new Result();
+    public void send(Drone d, Result r, Warehouse w, Order o, Map<Product, Integer> pr) {
+        for (Product p: pr.keySet()) {
+            r.load(d, w, p, pr.get(p));
+        }
+        for (Product p : pr.keySet()) {
+            r.deliver(d, o, p, pr.get(p));
+        }
     }
 }
