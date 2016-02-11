@@ -32,6 +32,24 @@ public class Product {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+
+        Product product = (Product) o;
+
+        return typeCode == product.typeCode && weight == product.weight;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = typeCode;
+        result = 31 * result + weight;
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Product{" +
                 "typeCode=" + typeCode +

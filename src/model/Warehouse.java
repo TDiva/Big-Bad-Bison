@@ -55,6 +55,10 @@ public class Warehouse {
         this.products = products;
     }
 
+    private void addProduct(Product p, int count) {
+        products.put(p, count);
+    }
+
     public boolean hasAllItems(Map<Product, Integer> order) {
 
         boolean flag = true;
